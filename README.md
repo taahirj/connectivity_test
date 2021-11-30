@@ -27,10 +27,12 @@ True
 
 With variables explained
 ```python
+>>> from connectivity_test import connectivity_test
 >>> connectivity_test(host="www.google.com",port=443,timeout=30)
+True
 ```
 
-Usage as main (standalone script) - Use connectivity_test.py directly
+Usage as main (standalone script) - Use connectivity_test.py directly (assuming you are in the package folder)
 ```bash
 $ python3 connectivity_test --help
 Usage: python3 connectivity_test.py [option1] arg1 [option2] arg2 ...
