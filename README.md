@@ -7,7 +7,7 @@ connectivity_test
 
 ### Installation
 ```bash
-$ pip install connectivity_test
+$ python3 setup.py install
 ```
 
 ### Examples
