@@ -68,21 +68,43 @@ def connectivity_test(host: str, port: int, timeout: int) -> str:
         port = int(port)
         timeout = int(timeout)
 
-    if __name__ == "__main__":
-        print("---Connectivity Test------------")
-        print("To: " + styles["CYAN"] + str(host) + ":" + str(port) + styles["END"])
-        print("Timeout: " + styles["CYAN"] + str(timeout)  + " seconds" + styles["END"])
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(int(timeout))
-    result = sock.connect_ex((str(host),int(port)))
-    if result == 0:
+
+    try:
         if __name__ == "__main__":
-            print(styles["GREEN"] + "REACHABLE" + styles["END"] +": Host/IP " + str(host) + " is REACHABLE on Port " + str(port))
-        return True
-    else:
+            print("---Connectivity Test------------")
+            print("To: " + styles["CYAN"] + str(host) + ":" + str(port) + styles["END"])
+            print("Timeout: " + styles["CYAN"] + str(timeout)  + " seconds" + styles["END"])
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(int(timeout))
+        result = sock.connect_ex((str(host),int(port)))
+        if result == 0:
+            if __name__ == "__main__":
+                print(styles["GREEN"] + "REACHABLE" + styles["END"] +": Host/IP " + str(host) + " is REACHABLE on Port " + str(port))
+            return "True"
+        else:
+            if __name__ == "__main__":
+                print(styles["RED"] + "UNREACHABLE" + styles["END"] + ": Host/IP " + str(host) + " is UNREACHABLE on Port " + str(port))
+            return "False"
+    
+    except KeyboardInterrupt:
         if __name__ == "__main__":
-            print(styles["RED"] + "UNREACHABLE" + styles["END"] + ": Host/IP " + str(host) + " is UNREACHABLE on Port " + str(port))
-        return False
+            print(styles["RED"] + "ERROR" + styles["END"] + ": Keyboard interrupt detected, you pressed Ctrl+C. Exiting...")
+            sock.close()
+            quit()
+        return "ERROR: Keyboard interrupt detected."
+    
+    except socket.gaierror:
+        if __name__ == "__main__":
+            print(styles["RED"] + "ERROR" + styles["END"] + ": Invalid hostname or IP Address, could not be resolved. Exiting...")
+            quit()
+        return "ERROR: Invalid hostname or IP Address, could not be resolved."
+    
+    except socket.error:
+        if __name__ == "__main__":
+            print(styles["RED"] + "ERROR" + styles["END"] + ": Socket error, could not connect to server")
+            quit()
+        return "ERROR: Socket error, Could not connect to server"
+    
     sock.close()
     if __name__ == "__main__":
         print("---Connectivity Test Complete---")
