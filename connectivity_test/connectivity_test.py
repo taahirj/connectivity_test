@@ -6,7 +6,7 @@ Test connectivity to a given host and port within a given timeout period.
 Functions:
     - connectivity_test(host, port, timeout)
       Keyword arguments:
-          host (str) -- Hotname or IP Address (*Required)
+          host (str) -- Hostname or IP Address (*Required)
           port (int) -- Port number (*Required)
           timeout (int) -- Timeout in seconds (*Required)
           ** Note: Defaults applies when run as main. See --help for details.
