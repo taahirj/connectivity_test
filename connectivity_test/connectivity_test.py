@@ -26,7 +26,7 @@ def connectivity_test(host: str, port: int, timeout: int) -> str:
     """Test connectivity to a given host and port within a given timeout period.
 
     Keyword arguments:
-        host (str) -- Hotname or IP Address (*Required)
+        host (str) -- Hostname or IP Address (*Required)
         port (int) -- Port number (*Required)
         timeout (int) -- Timeout in seconds (*Required)
     Returns:
